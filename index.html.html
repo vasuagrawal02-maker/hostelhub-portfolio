@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelHub — Vasu Agrawal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2D1B69;
+            --accent: #FF6B35;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-cream: #FFF9F4;
+            --bg-white: #FFFFFF;
+            --border: #E5E5E5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-cream);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(45, 27, 105, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        header {
+            position: relative;
+            padding: 120px 24px 80px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 24px;
+            line-height: 1.1;
+            animation: fadeInUp 0.6s ease-out 0.1s backwards;
+        }
+
+        header .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            font-weight: 400;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        /* Metrics Grid */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease-out 0.3s backwards;
+        }
+
+        .metric-card {
+            background: var(--bg-white);
+            padding: 36px 24px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 27, 105, 0.12);
+            border-color: var(--primary);
+        }
+
+        .metric-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .metric-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--bg-white);
+            margin: 48px auto;
+            padding: 64px 48px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            max-width: 1200px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 32px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            margin: 24px 0 24px 24px;
+            color: var(--text-dark);
+        }
+
+        .section li {
+            margin-bottom: 16px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .section li strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(45, 27, 105, 0.08));
+            border-left: 4px solid var(--accent);
+            padding: 28px 32px;
+            margin: 32px 0;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: 24px;
+            left: -2px;
+            font-size: 1.5rem;
+        }
+
+        .highlight-box strong {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            padding-left: 40px;
+        }
+
+        /* Screenshots Gallery */
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .screenshot-item {
+            background: var(--bg-cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .screenshot-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(45, 27, 105, 0.05), rgba(255, 107, 53, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .screenshot-item:hover::before {
+            opacity: 1;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 24px 48px rgba(45, 27, 105, 0.15);
+            border-color: var(--primary);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid var(--accent);
+            transition: transform 0.5s ease;
+        }
+
+        .screenshot-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-caption {
+            padding: 28px;
+            background: var(--bg-white);
+            position: relative;
+            z-index: 2;
+        }
+
+        .screenshot-caption h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .screenshot-caption p {
+            font-size: 0.98rem;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, var(--bg-cream), var(--bg-white));
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 80px 24px 60px;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        footer p {
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        footer strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 80px 20px 60px;
+            }
+
+            .section {
+                padding: 40px 28px;
+                margin: 32px 20px;
+            }
+
+            .screenshots {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .highlight-box {
+                padding: 24px 20px;
+            }
+
+            .highlight-box p {
+                padding-left: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hero-badge">2023 - 2025 • Student Housing Platform</div>
+        <h1>HostelHub</h1>
+        <p class="subtitle">Making hostel discovery safe, simple, and verified for college students across Mumbai & Navi Mumbai</p>
+        
+        <div class="metrics">
+            <div class="metric-card">
+                <div class="metric-number">100+</div>
+                <div class="metric-label">Direct Bookings</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">500+</div>
+                <div class="metric-label">Students Helped</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">25+</div>
+                <div class="metric-label">Verified Partners</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">₹0</div>
+                <div class="metric-label">Marketing Spend</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>The Problem</h2>
+            <p>Finding safe, verified hostel accommodations in Mumbai and Navi Mumbai was a nightmare for college students. The existing system was broken — students relied on sketchy Facebook groups, unverified word-of-mouth referrals, and incomplete listings that often led to last-minute scrambles, safety concerns, and getting scammed.</p>
+            
+            <div class="highlight-box">
+                <p><strong>The Core Insight:</strong> Students didn't just need another listing platform — they needed trust, verification, and a system that actually understood their needs.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The Solution</h2>
+            <p>As Co-Founder, I led product strategy and built HostelHub from the ground up with a clear focus: create a platform students could actually trust.</p>
+            
+            <ul>
+                <li><strong>Smart Matching Algorithm:</strong> Developed a percentage-based matching system that showed students exactly how well each hostel fit their preferences — budget, location, amenities, and proximity to their college.</li>
+                <li><strong>Verification First:</strong> Every single hostel operator was personally verified. No listings went live without our approval. This wasn't scalable, but it built the trust that made everything else possible.</li>
+                <li><strong>Zero-Budget Partnership Strategy:</strong> Secured 25+ hostel partnerships without spending a rupee on marketing. Leveraged college admission timelines and offered value to owners during their off-season in exchange for exclusive partnerships.</li>
+                <li><strong>Student-Centric UX:</strong> Designed a clean, mobile-first interface that felt simple to use — search, match, review, schedule a visit, book. No confusion, no friction.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Product Walkthrough</h2>
+            <div class="screenshots">
+                <div class="screenshot-item">
+                    <img src="Hostelhub 1.jpg" alt="HostelHub Landing Page">
+                    <div class="screenshot-caption">
+                        <h3>Landing Page</h3>
+                        <p>Clean, intuitive entry point designed to get students searching immediately</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="Hostelhub 2.jpg" alt="Smart Matching Results">
+                    <div class="screenshot-caption">
+                        <h3>Smart Match Results</h3>
+                        <p>Percentage-based matching showing exactly how well each hostel fits student preferences</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="Hostelhub 3.jpg" alt="Student Login">
+                    <div class="screenshot-caption">
+                        <h3>Secure Login</h3>
+                        <p>Authentication system for personalized searches and saved preferences</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="Hostelhub 4.jpg" alt="Student Reviews">
+                    <div class="screenshot-caption">
+                        <h3>Verified Reviews</h3>
+                        <p>Real student feedback helping others make informed accommodation decisions</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="Hostelhub 5.jpg" alt="Amenities Selection">
+                    <div class="screenshot-caption">
+                        <h3>Preference Builder</h3>
+                        <p>Students select must-have amenities to find perfectly matched hostels</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-item">
+                    <img src="Hostelhub 6.jpg" alt="Visit Scheduling">
+                    <div class="screenshot-caption">
+                        <h3>Schedule Visits</h3>
+                        <p>Seamless booking system for scheduling in-person visits before committing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Impact & Growth</h2>
+            <p>Within the first year, HostelHub became the go-to platform for students seeking verified accommodations in Mumbai and Navi Mumbai:</p>
+            
+            <ul>
+                <li>Facilitated <strong>100+ direct bookings</strong> through the platform with high conversion rates</li>
+                <li>Indirectly helped <strong>500+ students</strong> find safe, verified accommodations</li>
+                <li>Built and maintained partnerships with <strong>25+ verified hostel operators</strong></li>
+                <li><strong>Zero marketing budget</strong> — grew entirely through word-of-mouth, strategic partnerships, and genuine value creation</li>
+                <li>High user satisfaction driven by verification standards and responsive support</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>The Growth Hack:</strong> Mapped college admission timelines and offered hostel owners guaranteed occupancy during their off-season in exchange for exclusive listings. Created a win-win that cost nothing in acquisition and built trust from day one.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What I Learned</h2>
+            <p>Building HostelHub taught me lessons that shaped how I approach every business problem:</p>
+            
+            <ul>
+                <li><strong>Trust is Non-Negotiable:</strong> In markets with information asymmetry, verification and authenticity aren't nice-to-haves — they're the entire foundation.</li>
+                <li><strong>Marketplace Density Matters:</strong> Two-sided marketplaces need hyperlocal density to achieve sustainable unit economics. We learned this the hard way when trying to expand too quickly.</li>
+                <li><strong>Resourcefulness > Capital:</strong> Strategic timing and incentive alignment can substitute for marketing budgets. You don't need money — you need to understand what people actually want.</li>
+                <li><strong>Founder Alignment is Critical:</strong> When co-founders have different visions for growth and scaling, it's better to wind down gracefully than force misaligned execution.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Approach & Execution</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Product Strategy</span>
+                <span class="tech-tag">UX/UI Design</span>
+                <span class="tech-tag">Matching Algorithms</span>
+                <span class="tech-tag">Partnership Development</span>
+                <span class="tech-tag">User Research</span>
+                <span class="tech-tag">Growth Strategy</span>
+                <span class="tech-tag">Marketplace Dynamics</span>
+                <span class="tech-tag">Trust Systems</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built by <strong>Vasu Agrawal</strong> • Co-Founder, HostelHub (2023-2025)</p>
+        <p>
+            <a href="https://linkedin.com/in/vasu-agrawal02" target="_blank">LinkedIn</a> • 
+            <a href="mailto:vasunew6677@gmail.com">Email</a>
+        </p>
+    </footer>
+</body>
+</html>
